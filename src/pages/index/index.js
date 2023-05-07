@@ -33,9 +33,9 @@ Page({
   },
   //事件处理函数
   bindViewTap() {
-    wx.navigateTo({
-      // url: '../logs/logs'
-      url:'pages/tab1/index'
+
+    wx.redirectTo({
+      url: '/pages/tab1/index'
     });
   },
   onLoad() {

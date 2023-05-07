@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/tab1/index",
     "pages/tab2/index"
   ],

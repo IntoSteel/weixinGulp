@@ -31,7 +31,7 @@
   "compileType": "miniprogram",
   "libVersion": "2.17.0",
   "appid": "wxf505ee87a2eda520",
-  "projectname": "ogc-supply-chain-wechat-applet",
+  "projectname": "weixinGulp",
   "debugOptions": {
     "hidedInDevtools": []
   },
