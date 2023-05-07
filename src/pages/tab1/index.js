@@ -1,3 +1,5 @@
+let app = getApp();
+
 Component({
   pageLifetimes: {
     show() {
@@ -5,8 +7,9 @@ Component({
         this.getTabBar()) {
         this.getTabBar().setData({
           selected: 0
-        })
+        });
+        app.globalData.tabSelect = 0;
       }
     }
   }
-})
+});

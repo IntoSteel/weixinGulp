@@ -15,6 +15,7 @@ App({
     });
   },
   globalData: {
+    tabSelect:0,
     userInfo: null
   }
 });

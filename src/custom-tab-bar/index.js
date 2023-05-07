@@ -1,6 +1,7 @@
+let app = getApp();
 Component({
   data: {
-    selected: 0,
+    selected: null,
     color: "#7A7E83",
     selectedColor: "#3cc51f",
     list: [{
@@ -15,13 +16,25 @@ Component({
       text: "接口"
     }]
   },
+  
+  ready(){
+    this.setData({
+      selected: app.globalData.tabSelect
+    });
+  },
+
   attached() {
+
   },
   methods: {
     switchTab(e) {
       const data = e.currentTarget.dataset;
       const url = data.path;
+      if(data.index===this.data.selected){
+        return false;
+      }
       wx.switchTab({url});
+      app.globalData.tabSelect = data.index;
       this.setData({
         selected: data.index
       });
