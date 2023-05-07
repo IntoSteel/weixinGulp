@@ -16,6 +16,7 @@ App({
   },
   globalData: {
     tabSelect:0,
+    customTabBarList:[],// tabbar列表
     userInfo: null
   }
 });

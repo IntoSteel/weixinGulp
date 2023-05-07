@@ -1,8 +1,17 @@
-<!--miniprogram/custom-tab-bar/index.wxml-->
 <view class="tab-bar">
-  <view class="tab-bar-border"></view>
-  <view wx:for="{{list}}" wx:key="index" class="tab-bar-item" data-path="{{item.pagePath}}" data-index="{{index}}" bindtap="switchTab">
-    <image class="images" src="{{selected === index ? item.selectedIconPath : item.iconPath}}"></image>
-    <view class="views" style="color: {{selected === index ? selectedColor : color}}">{{item.text}}</view>
+  <cover-view class="tab-bar-border"></cover-view>
+  <scroll-view class="scroll-view_H" scroll-x="true" style="width: 100%" enable-flex="true">
+    <view wx:for="{{list}}" wx:key="index1" class="tab-bar-item scroll-view-item_H" style="width:{{list.length < 4 ? 100/list.length : 25}}%" data-path="{{item}}" data-index="{{index}}" data-more="{{item.more}}" bindtap="switchTab">
+      <image src="{{selected === item.pagePath ? item.selectedIconPath : item.iconPath}}"/>
+      <view style="color: {{selected === item.pagePath ? selectedColor : color}}">{{language ? item.enText : item.text}}</view>
+    </view>
+  </scroll-view>
+  <view wx:if="{{show}}" class="show">
+    <scroll-view scroll-x="true" style="width: 100%;white-space: nowrap" 	scroll-into-view="{{scrollInView}}" enable-flex="true">
+      <view wx:for="{{list1}}" wx:key="index" id="{{item.enText}}" class="tab-bar-item scroll-view-item_H" style="width:{{list1.length < 4? 100/list1.length : 25}}%" data-path="{{item}}" data-index="{{index}}" bindtap="switchView">
+        <image src="{{selected == item.pagePath ? item.selectedIconPath : item.iconPath}}"/>
+        <view style="color: {{selected === item.pagePath ? selectedColor : color}}">{{language ? item.enText : item.text}}</view>
+      </view>
+    </scroll-view>
   </view>
 </view>

@@ -1,1 +1,2 @@
-<view class="intro">接口</view>
+<view class="tab2">tab2组件</view>
+<tabbar></tabbar>

@@ -1,1 +1,46 @@
-<view class="intro">组件</view>
+<view class="tab1">
+  <view class="swiper-item">
+		<scroll-view class="scroll-view" scroll-y="false" lower-threshold="80" bindscrolltolower="scrollTop">
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+	
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+			<view>tab1组件</view>
+	
+		</scroll-view>
+	</view>
+	
+</view>
+<tabbar></tabbar>

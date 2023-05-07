@@ -1,43 +1,72 @@
-let app = getApp();
+const app = getApp();
 Component({
   data: {
-    selected: null,
-    color: "#7A7E83",
-    selectedColor: "#3cc51f",
-    list: [{
-      pagePath: "/pages/tab1/index",
-      iconPath: "/images/icon_component.png",
-      selectedIconPath: "/images/icon_component_HL.png",
-      text: "组件"
-    }, {
-      pagePath: "/pages/tab2/index",
-      iconPath: "/images/icon_API.png",
-      selectedIconPath: "/images/icon_API_HL.png",
-      text: "接口"
-    }]
+    selected: 0,
+    color: '#7A7E83',
+    selectedColor: '#ff5900',
+    list: [],
+    list1: [],
+    scrollInView: null,
+    show: false,
   },
-  
-  ready(){
-    this.setData({
-      selected: app.globalData.tabSelect
-    });
-  },
-
-  attached() {
-
-  },
-  methods: {
-    switchTab(e) {
-      const data = e.currentTarget.dataset;
-      const url = data.path;
-      if(data.index===this.data.selected){
-        return false;
-      }
-      wx.switchTab({url});
-      app.globalData.tabSelect = data.index;
+  attached () {
+    let selected = wx.getStorageSync('selected');
+    const scrollInView = wx.getStorageSync('scrollInView');
+    console.log(scrollInView,'scrollInView');
+    if (app.globalData.customTabBarList.length > 4) {
+      selected = selected === 0 ? app.globalData.customTabBarList[0].pagePath : selected;
+      let arr = app.globalData.customTabBarList.slice(0, 3);
+      arr.push(
+        {
+          selectedIconPath: '/images/buttomIcon/more.png',
+          iconPath: '/images/buttomIcon/more2.png',
+          pagePath: arr.some(item => item.pagePath === selected) ? '' : selected,
+          text: '更多',
+          more: 1,
+        });
       this.setData({
-        selected: data.index
+        list: arr,
+        selected: selected,
+        list1: app.globalData.customTabBarList.slice(3)
+      });
+    } else {
+      selected = selected === 0 ? app.globalData.customTabBarList[0].pagePath : selected;
+      this.setData({
+        selected: selected,
+        list: app.globalData.customTabBarList
       });
     }
-  }
+    this.setData({
+      scrollInView: scrollInView ? scrollInView : null
+    });
+    console.log(this.data.scrollInView,'scrollInViewscrollInView');
+  },
+  methods: {
+    // BO
+    switchTab (e) {
+      const { path } = e.currentTarget.dataset;
+      const { show } = this.data;
+
+      if (path.more) {
+        this.setData({
+          show: !show
+        });
+        return;
+      }
+      const url = path.pagePath;
+      wx.setStorageSync('selected', url);
+      wx.reLaunch({ url });
+    },
+    // ON
+    switchView (e) {
+      const { path } = e.currentTarget.dataset;
+      wx.setStorageSync('scrollInView', path.enText);
+      this.setData({
+        scrollInView: path.enText
+      });
+      const url = path.pagePath;
+      wx.setStorageSync('selected', url);
+      wx.reLaunch({ url });
+    }
+  },
 });

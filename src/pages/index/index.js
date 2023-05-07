@@ -19,6 +19,7 @@ Page({
   onShow(){
     //每次 onShow 重新设置语言，以防语言更新
     this.setLanguage();
+    this.getUserPermissions();
   },
   /**
    * 重新设置语言
@@ -30,6 +31,69 @@ Page({
         ...langSrc.common,
       }
     });
+  },
+  // 查询按钮权限
+  getUserPermissions () {
+    // 获取的权限，目前写死
+    const permissionsList = ['mini:applicationManage','mini:applicationManageSGS', 'mini:productInspection',
+      'mini:checkout', 'mini:checkQuery'];
+    wx.setStorageSync('permissions', permissionsList);
+    this.setCustomTabBar();
+
+  },
+  // 添加底部栏数据
+  setCustomTabBar () {
+    // 所有菜单
+    const lists = [
+      {
+        selectedIconPath: '/images/buttomIcon/file.png',
+        iconPath: '/images/buttomIcon/file2.png',
+        pagePath: '/pages/tab1/index',
+        text: 'tab1',
+        enText: 'RequestForm',
+        role:'mini:applicationManage'
+      },
+      {
+        selectedIconPath: '/images/buttomIcon/file.png',
+        iconPath: '/images/buttomIcon/file2.png',
+        pagePath: '/pages/tab2/index',
+        text: 'tab2',
+        enText: 'ApplyManage',
+        role:'mini:applicationManageSGS'
+      },
+      {
+        selectedIconPath: '/images/buttomIcon/file.png',
+        iconPath: '/images/buttomIcon/file2.png',
+        pagePath: '/pages/tab3/index',
+        text: 'tab3',
+        enText: 'DispatchManage',
+        role:'mini:productInspection'
+      },
+      {
+        selectedIconPath: '/images/buttomIcon/file.png',
+        iconPath: '/images/buttomIcon/file2.png',
+        pagePath: '/pages/tab4/index',
+        text: 'tab4',
+        enText: 'TestOrder',
+        role:'mini:checkout'
+      },
+      {
+        selectedIconPath: '/images/buttomIcon/file.png',
+        iconPath: '/images/buttomIcon/file2.png',
+        pagePath: '/pages/tab5/index',
+        text: 'tab5',
+        enText: 'InspectProcess',
+        role:'mini:checkQuery'
+      },
+ 
+    ];
+    const permissions = wx.getStorageSync('permissions');
+    // 权限过滤
+    let list = lists.filter((item) => permissions.includes(item.role));
+    // list.push(lists[lists.length - 1]);
+    app.globalData.customTabBarList = list;
+    console.log(app.globalData.customTabBarList,'app.globalData.customTabBarList');
+    wx.setStorageSync('selected', 0);
   },
   //事件处理函数
   bindViewTap() {
