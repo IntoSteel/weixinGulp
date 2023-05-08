@@ -11,14 +11,16 @@ const alias = require('gulp-wechat-weapp-src-alisa');
 const rename = require('gulp-rename');
 const del = require('del');
 const eslint = require('gulp-eslint');
-const gulpI18nWxml = require('@miniprogram-i18n/gulp-i18n-wxml')
-const gulpI18nLocales = require('@miniprogram-i18n/gulp-i18n-locales')
+const gulpI18nWxml = require('@miniprogram-i18n/gulp-i18n-wxml');
+const gulpI18nLocales = require('@miniprogram-i18n/gulp-i18n-locales');
 const isProd = process.env.NODE_ENV === 'production';
 
 const srcPath = './src/**';
 const distPath = './dist/';
+const distPaths = './dists/';
+
 const wxmlFiles = [`${srcPath}/*.wxml`];
-const lessFiles = [`${srcPath}/*.{less,wxss}`];
+const lessFiles = [`${srcPath}/*.{less,wxss,wxs}`];
 // const sassFiles = [`${srcPath}/*.scss`];
 
 const jsonFiles = [
@@ -139,19 +141,19 @@ gulp.task(img);
 const mergeAndGenerateLocales = () => {
   return src('src/**/i18n/*.json')
     .pipe(gulpI18nLocales({ defaultLocale: 'zh-CN', fallbackLocale: 'zh-CN' }))
-    .pipe(dest('dist/i18n/'))
-}
+    .pipe(dest('dist/i18n/'));
+};
 
 const transpileWxml = () => {
   return src('src/**/*.wxml')
     .pipe(gulpI18nWxml())
-    .pipe(dest('dist/'))
-}
+    .pipe(dest('dist/'));
+};
 
 const copyToDist = () => {
   return src(['src/**/*', '!src/**/*.wxml', '!src/**/i18n/*.json'])
-    .pipe(dest('dist/'))
-}
+    .pipe(dest('dist/'));
+};
 
 /* watch */
 gulp.task('watch', () => {
@@ -184,3 +186,9 @@ gulp.task(
     'watch'
   )
 );
+
+// 复制miniprogram_npm
+gulp.task('copy',  function() { 
+  return gulp.src('./miniprogram_npm/**/*')
+    .pipe(gulp.dest('./dist/miniprogram_npm'));
+});

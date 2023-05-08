@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "cross-env NODE_ENV=development gulp dev",
+    "dev": "cross-env NODE_ENV=development gulp dev copy",
     "build": "cross-env NODE_ENV=production gulp build"
   },
   "devDependencies": {
@@ -29,6 +29,7 @@
     "@miniprogram-i18n/core": "^1.0.0-rc.12",
     "@miniprogram-i18n/gulp-i18n-locales": "^1.0.0-rc.12",
     "@miniprogram-i18n/gulp-i18n-wxml": "^1.0.0-rc.12",
+    "@vant/weapp": "^1.10.18",
     "miniprogram-file-uploader": "^1.0.0",
     "weui-miniprogram": "^1.1.1"
   },

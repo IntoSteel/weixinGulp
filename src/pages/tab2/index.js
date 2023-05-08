@@ -11,6 +11,17 @@ Component({
         app.globalData.tabSelect = 1;
 
       }
-    }
+    },
+    
+  },
+  methods:{
+    onChanges(event) {
+      console.log(event,'2323');
+      wx.showToast({
+        icon: 'none',
+        title: `当前值：${event.detail}`,
+      });
+    },
   }
+  
 });

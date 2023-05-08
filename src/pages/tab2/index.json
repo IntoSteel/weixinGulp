@@ -1,5 +1,8 @@
 {
   "usingComponents": {
-    "tabbar": "/custom-tab-bar"
+    "van-button": "@vant/weapp/button/index",
+    "tabbar": "/custom-tab-bar",
+    "van-field": "@vant/weapp/field/index",
+    "van-slider": "@vant/weapp/slider/index"
   }
 }
